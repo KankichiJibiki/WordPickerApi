@@ -1,3 +1,4 @@
 ﻿# .NET Core
 /appsettings.json
 /appsettings.*.json
+.vs
