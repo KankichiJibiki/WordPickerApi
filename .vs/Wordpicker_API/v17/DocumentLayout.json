@@ -1,0 +1,166 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\services\\deeplservice\\deeplservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\services\\deeplservice\\deeplservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\services\\wordsapiservice\\wordsapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\services\\wordsapiservice\\wordsapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\controllers\\flashcardscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\controllers\\flashcardscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\dtos\\wordsapiresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\dtos\\wordsapiresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\dtos\\translaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\dtos\\translaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\utils\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\utils\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\services\\deeplservice\\ideeplservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\services\\deeplservice\\ideeplservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|c:\\users\\kankichi.jibiki\\portfolio\\wordpickerapi\\wordpicker_api\\services\\httpservice\\httpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FE1AF23-583F-4145-B362-019A54610F29}|Wordpicker_API\\Wordpicker_API.csproj|solutionrelative:wordpicker_api\\services\\httpservice\\httpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TranslateRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\DTOs\\TranslateRequestDto.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\DTOs\\TranslateRequestDto.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\DTOs\\TranslateRequestDto.cs",
+              "RelativeToolTip": "Wordpicker_API\\DTOs\\TranslateRequestDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T13:01:04.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WordsApiResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\DTOs\\WordsApiResponseDto.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\DTOs\\WordsApiResponseDto.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\DTOs\\WordsApiResponseDto.cs",
+              "RelativeToolTip": "Wordpicker_API\\DTOs\\WordsApiResponseDto.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAIA4wDgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T12:52:02.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Startup.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Startup.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Startup.cs",
+              "RelativeToolTip": "Wordpicker_API\\Startup.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABkAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-10T12:16:58.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Utils\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Utils\\ApiResponse.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Utils\\ApiResponse.cs",
+              "RelativeToolTip": "Wordpicker_API\\Utils\\ApiResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T13:58:22.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DeepLService.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\DeepLService\\DeepLService.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Services\\DeepLService\\DeepLService.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\DeepLService\\DeepLService.cs",
+              "RelativeToolTip": "Wordpicker_API\\Services\\DeepLService\\DeepLService.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAnwDgAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T13:34:53.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IDeepLService.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\DeepLService\\IDeepLService.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Services\\DeepLService\\IDeepLService.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\DeepLService\\IDeepLService.cs",
+              "RelativeToolTip": "Wordpicker_API\\Services\\DeepLService\\IDeepLService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T13:34:37.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WordsApiService.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\WordsApiService\\WordsApiService.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Services\\WordsApiService\\WordsApiService.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\WordsApiService\\WordsApiService.cs",
+              "RelativeToolTip": "Wordpicker_API\\Services\\WordsApiService\\WordsApiService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T11:43:18.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FlashCardsController.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Controllers\\FlashCardsController.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Controllers\\FlashCardsController.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Controllers\\FlashCardsController.cs",
+              "RelativeToolTip": "Wordpicker_API\\Controllers\\FlashCardsController.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAArwBkAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T11:43:18.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HttpService.cs",
+              "DocumentMoniker": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\HttpService\\HttpService.cs",
+              "RelativeDocumentMoniker": "Wordpicker_API\\Services\\HttpService\\HttpService.cs",
+              "ToolTip": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Services\\HttpService\\HttpService.cs",
+              "RelativeToolTip": "Wordpicker_API\\Services\\HttpService\\HttpService.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwCUAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T11:43:18.76Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

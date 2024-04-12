@@ -1,6 +1,6 @@
 ﻿namespace Wordpicker_API.Configs
 {
-    public class AppConfigs: IAppConfigs
+    public class AppConfigs : IAppConfigs
     {
         private readonly IConfiguration _configuration;
 
@@ -22,6 +22,11 @@
         public string GetWordsApiEndpoint()
         {
             return _configuration["WordsApiEndpoint"];
+        }
+
+        public string GetDeepLApiKey()
+        {
+            return _configuration["DeepLApiKey"];
         }
     }
 }

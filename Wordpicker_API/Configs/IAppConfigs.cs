@@ -7,5 +7,6 @@
         string GetWordsApiHost();
 
         string GetWordsApiEndpoint();
+        string GetDeepLApiKey();
     }
 }
