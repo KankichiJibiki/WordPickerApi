@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Wordpicker_API.csproj": {}
+    "C:\\Users\\kan04\\portfolio\\Wordpicker_API\\Wordpicker_API\\Wordpicker_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Wordpicker_API.csproj": {
+    "C:\\Users\\kan04\\portfolio\\Wordpicker_API\\Wordpicker_API\\Wordpicker_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Wordpicker_API.csproj",
+        "projectUniqueName": "C:\\Users\\kan04\\portfolio\\Wordpicker_API\\Wordpicker_API\\Wordpicker_API.csproj",
         "projectName": "Wordpicker_API",
-        "projectPath": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\Wordpicker_API.csproj",
-        "packagesPath": "C:\\Users\\kankichi.jibiki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kankichi.jibiki\\portfolio\\WordPickerApi\\Wordpicker_API\\obj\\",
+        "projectPath": "C:\\Users\\kan04\\portfolio\\Wordpicker_API\\Wordpicker_API\\Wordpicker_API.csproj",
+        "packagesPath": "C:\\Users\\kan04\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kan04\\portfolio\\Wordpicker_API\\Wordpicker_API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kankichi.jibiki\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\kan04\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -85,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

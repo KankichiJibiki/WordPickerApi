@@ -71,3 +71,7 @@ C:\Users\kankichi.jibiki\portfolio\WordPickerApi\Wordpicker_API\bin\Debug\net6.0
 C:\Users\kankichi.jibiki\portfolio\WordPickerApi\Wordpicker_API\bin\Debug\net6.0\Microsoft.Extensions.Http.Polly.dll
 C:\Users\kankichi.jibiki\portfolio\WordPickerApi\Wordpicker_API\bin\Debug\net6.0\Polly.dll
 C:\Users\kankichi.jibiki\portfolio\WordPickerApi\Wordpicker_API\bin\Debug\net6.0\Polly.Extensions.Http.dll
+C:\Users\kan04\portfolio\Wordpicker_API\Wordpicker_API\bin\Debug\net6.0\DeepL.net.dll
+C:\Users\kan04\portfolio\Wordpicker_API\Wordpicker_API\bin\Debug\net6.0\Microsoft.Extensions.Http.Polly.dll
+C:\Users\kan04\portfolio\Wordpicker_API\Wordpicker_API\bin\Debug\net6.0\Polly.dll
+C:\Users\kan04\portfolio\Wordpicker_API\Wordpicker_API\bin\Debug\net6.0\Polly.Extensions.Http.dll
