@@ -28,5 +28,25 @@
         {
             return _configuration["DeepLApiKey"];
         }
+        public string GetAWSRegion()
+        {
+            return _configuration["AWS:Region"];
+        }
+        public string GetAWSProfileName()
+        {
+            return _configuration["AWS:ProfileName"];
+        }
+        public string GetS3BucketName()
+        {
+            return _configuration["AWS:BucketName"];
+        }
+        public string GetS3AccessKey()
+        {
+            return _configuration["AWS:AccessKey"];
+        }
+        public string GetS3SecretKey()
+        {
+            return _configuration["AWS:SecretKey"];
+        }
     }
 }

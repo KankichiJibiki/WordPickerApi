@@ -1,5 +1,5 @@
 ﻿# .NET Core
 /appsettings.json
 /appsettings.*.json
-.vs/*
+.vs
 bin/*
