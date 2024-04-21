@@ -4,6 +4,7 @@ using Wordpicker_API.Configs;
 using Wordpicker_API.DTOs;
 using Wordpicker_API.Services.DeepLService;
 using Wordpicker_API.Services.HttpService;
+using Wordpicker_API.Services.TextToSpeechService;
 using Wordpicker_API.Utils;
 
 namespace Wordpicker_API.Services.WordsApiService
@@ -12,13 +13,15 @@ namespace Wordpicker_API.Services.WordsApiService
     {
         private readonly IHttpService _httpService;
         private readonly IDeepLService _deepLService;
+        private readonly ITextToSpeechService _textToSpeechService;
         private readonly IAppConfigs _config;
         private readonly ApiResponse _response;
 
-        public WordsApiService(IHttpService httpService, IAppConfigs config, IDeepLService deepLService) 
+        public WordsApiService(IHttpService httpService, IAppConfigs config, IDeepLService deepLService, ITextToSpeechService textToSpeechService) 
         {
             _httpService = httpService;
             _deepLService = deepLService;
+            _textToSpeechService = textToSpeechService;
             _config = config;
             _response = new ApiResponse();
         }
@@ -47,6 +50,18 @@ namespace Wordpicker_API.Services.WordsApiService
                 }
 
                 var finalResponse = await GetJPDefinitions(result.GetResponse().Data);
+
+                if (string.IsNullOrEmpty(finalResponse.Word))
+                {
+                    var textToSpeechParams = new TextToSpeechRequestDto
+                    {
+                        Text = finalResponse.Word,
+                        LanguageCode = "en-US",
+                        AudioGender = "m",
+                    };
+                    var audioResponse = await _textToSpeechService.ConvertTextToSpeech(textToSpeechParams);
+                    finalResponse.Pronunciation.AudioURL = audioResponse.GetResponse().Data; 
+                }
                 if(finalResponse.DefinitionsJp == null)
                 {
                     return result;
@@ -89,7 +104,7 @@ namespace Wordpicker_API.Services.WordsApiService
                 return root;
             } catch(Exception ex)
             {
-                throw new InvalidDataException();
+                throw new InvalidDataException(ex.Message);
             }
         }
     }

@@ -48,5 +48,13 @@
         {
             return _configuration["AWS:SecretKey"];
         }
+        public string GetTempAudioPrefix()
+        {
+            return "tmp_audio_files";
+        }
+        public string GetAudioContentType()
+        {
+            return "audio/wav";
+        }
     }
 }

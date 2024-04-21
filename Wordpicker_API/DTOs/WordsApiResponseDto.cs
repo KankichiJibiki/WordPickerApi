@@ -36,6 +36,9 @@ namespace Wordpicker_API.DTOs
     {
         [JsonPropertyName("all")]
         public string? All { get; set; }
+
+        [JsonPropertyName("audio")]
+        public string? AudioURL { get; set; }
     }
 
     public class Root

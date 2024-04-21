@@ -1,5 +1,7 @@
 ﻿using Google.Cloud.TextToSpeech.V1;
+using Wordpicker_API.Configs;
 using Wordpicker_API.DTOs;
+using Wordpicker_API.Services.S3Service;
 using Wordpicker_API.Utils;
 
 namespace Wordpicker_API.Services.TextToSpeechService
@@ -8,14 +10,16 @@ namespace Wordpicker_API.Services.TextToSpeechService
     {
         private static readonly string MALE_VOICE_CODE = "m";
         private static readonly string FEMALE_VOICE_CODE = "f";
-        private readonly IConfiguration _config;
+        private readonly IAppConfigs _config;
         private readonly ApiResponse _response;
+        private readonly IS3Service _s3Service;
         private readonly TextToSpeechClient _textClient;
 
-        public TextToSpeechService(IConfiguration config) 
+        public TextToSpeechService(IAppConfigs config, IS3Service s3Service) 
         {
             _config = config;
             _response = new ApiResponse();
+            _s3Service = s3Service;
             _textClient = TextToSpeechClient.Create();
         }
         public async Task<ApiResponse> ConvertTextToSpeech(TextToSpeechRequestDto request)
@@ -53,7 +57,15 @@ namespace Wordpicker_API.Services.TextToSpeechService
                 };
 
                 SynthesizeSpeechResponse synthesizeResponse = _textClient.SynthesizeSpeech(synthesizeRequest);
+                byte[] audioData = synthesizeResponse.AudioContent.ToByteArray();
 
+                var putObjectResponse = await _s3Service.PutObjectAsync(_config.GetTempAudioPrefix(), audioData, _config.GetAudioContentType());
+                if (!putObjectResponse.GetResponse().Success)
+                {
+                    throw new FileLoadException("Failed to put audio file");
+                }
+
+                return await _s3Service.CreatePreSignedUrl(putObjectResponse.GetResponse().Data);
             } catch(Exception ex)
             {
                 _response.SetResponse(false, StatusCodes.Status500InternalServerError, ex.Message, "");

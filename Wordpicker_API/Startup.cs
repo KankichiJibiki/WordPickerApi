@@ -1,6 +1,8 @@
 ﻿using Wordpicker_API.Configs;
 using Wordpicker_API.Services.DeepLService;
 using Wordpicker_API.Services.HttpService;
+using Wordpicker_API.Services.S3Service;
+using Wordpicker_API.Services.TextToSpeechService;
 using Wordpicker_API.Services.WordsApiService;
 
 namespace Wordpicker_API
@@ -24,6 +26,8 @@ namespace Wordpicker_API
             services.AddScoped<IWordsApiService, WordsApiService>();
             services.AddScoped<IHttpService, HttpService>();
             services.AddScoped<IDeepLService, DeepLService>();
+            services.AddScoped<IS3Service, S3Service>();
+            services.AddScoped<ITextToSpeechService, TextToSpeechService>();
         }
 
         // Configure HTTP pipeline

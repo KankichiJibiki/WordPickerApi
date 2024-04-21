@@ -11,5 +11,7 @@
         string GetS3BucketName();
         string GetS3AccessKey();
         string GetS3SecretKey();
+        string GetTempAudioPrefix();
+        string GetAudioContentType();
     }
 }
