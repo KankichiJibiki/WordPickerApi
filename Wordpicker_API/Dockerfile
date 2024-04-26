@@ -12,7 +12,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY Wordpicker_API.csproj Wordpicker_API/
 WORKDIR /src/Wordpicker_API
-RUN dotnet restore Wordpicker_API.csproj
+RUN dotnet restore ./Wordpicker_API.csproj
 COPY . .
 RUN dotnet build Wordpicker_API.csproj -c Release -o /app/build
 
@@ -24,7 +24,6 @@ RUN dotnet publish Wordpicker_API.csproj -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-RUN apt-get update && apt-get install -y nginx
-#COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 5200
+ENV ASPNETCORE_URLS=http://+:80/
+EXPOSE 80
 ENTRYPOINT ["dotnet", "Wordpicker_API.dll"]

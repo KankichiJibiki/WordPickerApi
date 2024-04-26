@@ -1,4 +1,5 @@
-﻿using Wordpicker_API.Configs;
+﻿using Microsoft.AspNetCore.HttpOverrides;
+using Wordpicker_API.Configs;
 using Wordpicker_API.Services.DeepLService;
 using Wordpicker_API.Services.HttpService;
 using Wordpicker_API.Services.S3Service;
@@ -21,6 +22,7 @@ namespace Wordpicker_API
         {
             services.AddControllers();
             services.AddHttpClient();
+            services.AddHealthChecks();
 
             services.AddScoped<IAppConfigs, AppConfigs>();
             services.AddScoped<IWordsApiService, WordsApiService>();
@@ -33,6 +35,10 @@ namespace Wordpicker_API
         // Configure HTTP pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             // Environment setting
             if (env.IsDevelopment())
             {
@@ -58,6 +64,7 @@ namespace Wordpicker_API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
 
