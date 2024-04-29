@@ -30,23 +30,23 @@
         }
         public string GetAWSRegion()
         {
-            return _configuration["AWS:Region"];
+            return _configuration.GetSection("AWS")["Region"];
         }
         public string GetAWSProfileName()
         {
-            return _configuration["AWS:ProfileName"];
+            return _configuration.GetSection("AWS")["ProfileName"];
         }
         public string GetS3BucketName()
         {
-            return _configuration["AWS:BucketName"];
+            return _configuration.GetSection("AWS")["BucketName"];
         }
         public string GetS3AccessKey()
         {
-            return _configuration["AWS:AccessKey"];
+            return _configuration.GetSection("AWS")["AccessKey"];
         }
         public string GetS3SecretKey()
         {
-            return _configuration["AWS:SecretKey"];
+            return _configuration.GetSection("AWS")["SecretKey"];
         }
         public string GetTempAudioPrefix()
         {

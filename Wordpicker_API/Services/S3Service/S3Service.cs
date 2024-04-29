@@ -130,12 +130,6 @@ namespace Wordpicker_API.Services.S3Service
                 };
 
                 var response = await _s3Client.PutObjectAsync(request);
-
-                if(!response.HttpStatusCode.Equals(StatusCodes.Status200OK))
-                {
-                    throw new AmazonS3Exception("Failed putting the object");
-                }
-
                 _response.SetResponse(true, StatusCodes.Status200OK, "Success", key);
                 return _response;
             } catch (Exception ex)

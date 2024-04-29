@@ -51,7 +51,7 @@ namespace Wordpicker_API.Services.WordsApiService
 
                 var finalResponse = await GetJPDefinitions(result.GetResponse().Data);
 
-                if (string.IsNullOrEmpty(finalResponse.Word))
+                if (!string.IsNullOrEmpty(finalResponse.Word))
                 {
                     var textToSpeechParams = new TextToSpeechRequestDto
                     {
