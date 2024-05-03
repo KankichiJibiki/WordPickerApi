@@ -4,6 +4,7 @@ using Wordpicker_API.Configs;
 using Wordpicker_API.DTOs;
 using Wordpicker_API.Services.DeepLService;
 using Wordpicker_API.Services.HttpService;
+using Wordpicker_API.Services.S3Service;
 using Wordpicker_API.Services.TextToSpeechService;
 using Wordpicker_API.Utils;
 
@@ -14,14 +15,16 @@ namespace Wordpicker_API.Services.WordsApiService
         private readonly IHttpService _httpService;
         private readonly IDeepLService _deepLService;
         private readonly ITextToSpeechService _textToSpeechService;
+        private readonly IS3Service _s3Service;
         private readonly IAppConfigs _config;
         private readonly ApiResponse _response;
 
-        public WordsApiService(IHttpService httpService, IAppConfigs config, IDeepLService deepLService, ITextToSpeechService textToSpeechService) 
+        public WordsApiService(IHttpService httpService, IAppConfigs config, IDeepLService deepLService, ITextToSpeechService textToSpeechService, IS3Service s3Service) 
         {
             _httpService = httpService;
             _deepLService = deepLService;
             _textToSpeechService = textToSpeechService;
+            _s3Service = s3Service;
             _config = config;
             _response = new ApiResponse();
         }
@@ -51,23 +54,26 @@ namespace Wordpicker_API.Services.WordsApiService
 
                 var finalResponse = await GetJPDefinitions(result.GetResponse().Data);
 
-                if (!string.IsNullOrEmpty(finalResponse.Word))
+                var prefix = $"{_config.GetTempAudioPrefix()}/{finalResponse.Word}.wav";
+                var doesAudioExist = await _s3Service.GetObjectAsync(prefix);
+                if (doesAudioExist.GetResponse().StatusCode.Equals(StatusCodes.Status200OK))
                 {
-                    var textToSpeechParams = new TextToSpeechRequestDto
-                    {
-                        Text = finalResponse.Word,
-                        LanguageCode = "en-US",
-                        AudioGender = "m",
-                    };
-                    var audioResponse = await _textToSpeechService.ConvertTextToSpeech(textToSpeechParams);
-                    finalResponse.Pronunciation.AudioURL = audioResponse.GetResponse().Data; 
-                }
-                if(finalResponse.DefinitionsJp == null)
-                {
+                    var responseUrl = await _s3Service.CreatePreSignedUrl(prefix);
+                    finalResponse.Pronunciation.AudioURL = responseUrl.GetResponse().Data;
+                    result.SetResponse(true, StatusCodes.Status200OK, "", JsonConvert.SerializeObject(finalResponse));
                     return result;
                 }
 
-                result.SetResponse(true, StatusCodes.Status200OK, "Got Jp definitions as well", JsonConvert.SerializeObject(finalResponse));
+                var textToSpeechParams = new TextToSpeechRequestDto
+                {
+                    Text = finalResponse.Word,
+                    LanguageCode = "en-US",
+                    AudioGender = "m",
+                };
+                var audioResponse = await _textToSpeechService.ConvertTextToSpeech(textToSpeechParams);
+                finalResponse.Pronunciation.AudioURL = audioResponse.GetResponse().Data; 
+
+                result.SetResponse(true, StatusCodes.Status200OK, "", JsonConvert.SerializeObject(finalResponse));
                 return result;
             } catch(Exception ex)
             {
@@ -96,11 +102,10 @@ namespace Wordpicker_API.Services.WordsApiService
                 var resultDefinitionJp = await _deepLService.GetTextsTranslated(translateRequests.ToArray());
                 if(!resultDefinitionJp.GetResponse().Success)
                 {
-                    throw new InvalidDataException();
+                    return root;
                 }
 
                 root.DefinitionsJp = JsonConvert.DeserializeObject<List<string>>(resultDefinitionJp.GetResponse().Data);
-
                 return root;
             } catch(Exception ex)
             {

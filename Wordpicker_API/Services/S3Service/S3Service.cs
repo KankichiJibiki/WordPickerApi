@@ -2,6 +2,7 @@
 using Amazon.S3;
 using Amazon.S3.Model;
 using Newtonsoft.Json;
+using System.Net;
 using Wordpicker_API.Configs;
 using Wordpicker_API.Utils;
 
@@ -38,6 +39,12 @@ namespace Wordpicker_API.Services.S3Service
             {
                 var objectResponse = await GetObjectAsync(key);
 
+                if (objectResponse.GetResponse().StatusCode.Equals(StatusCodes.Status204NoContent))
+                {
+                    _response.SetResponse(true, StatusCodes.Status204NoContent, "No object found", "");
+                    return _response;
+                }
+
                 var request = new GetPreSignedUrlRequest
                 {
                     BucketName = bucket,
@@ -57,12 +64,7 @@ namespace Wordpicker_API.Services.S3Service
 
         public async Task<Boolean> DoesBucketExist(string bucket)
         {
-            if (!await Amazon.S3.Util.AmazonS3Util.DoesS3BucketExistV2Async(_s3Client, bucket))
-            {
-                return false;
-            }
-
-            return true;
+            return await Amazon.S3.Util.AmazonS3Util.DoesS3BucketExistV2Async(_s3Client, bucket);
         }
 
         public async Task<ApiResponse> GetObjectAsync(string prefix)
@@ -87,16 +89,13 @@ namespace Wordpicker_API.Services.S3Service
             try
             {
                 var result = await _s3Client.GetObjectAsync(parameters);
-                if(result == null)
-                {
-                    throw new FileNotFoundException("No object found");
-                }
 
                 _response.SetResponse(true, StatusCodes.Status200OK, "Success", JsonConvert.SerializeObject(result));
                 return _response;
             } catch (Exception ex)
             {
-                throw new AmazonS3Exception(ex.Message);
+                _response.SetResponse(true, StatusCodes.Status204NoContent, ex.Message, "");
+                return _response;
             }
         }
 
@@ -118,7 +117,7 @@ namespace Wordpicker_API.Services.S3Service
                 throw new ArgumentException($"data is empty {data}");
             }
 
-            var key = $"{prefix}/{Guid.NewGuid()}.{GetFileExtension(contentType)}";
+            var key = $"{prefix}.{GetFileExtension(contentType)}";
             try
             {
                 var request = new PutObjectRequest
