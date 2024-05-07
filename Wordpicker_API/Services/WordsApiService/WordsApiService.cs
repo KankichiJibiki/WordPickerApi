@@ -12,6 +12,8 @@ namespace Wordpicker_API.Services.WordsApiService
 {
     public class WordsApiService : IWordsApiService
     {
+        private readonly int MAX_WORD_LENGTH = 30;
+
         private readonly IHttpService _httpService;
         private readonly IDeepLService _deepLService;
         private readonly ITextToSpeechService _textToSpeechService;
@@ -34,6 +36,12 @@ namespace Wordpicker_API.Services.WordsApiService
             if (string.IsNullOrEmpty(word))
             {
                 _response.SetResponse(false, StatusCodes.Status400BadRequest, "Word is blank", "");
+                return _response;
+            }
+
+            if (word.Length > MAX_WORD_LENGTH)
+            {
+                _response.SetResponse(false, StatusCodes.Status400BadRequest, "Word is too long", "");
                 return _response;
             }
 
@@ -66,6 +74,7 @@ namespace Wordpicker_API.Services.WordsApiService
 
                 var textToSpeechParams = new TextToSpeechRequestDto
                 {
+                    Title = finalResponse.Word,
                     Text = finalResponse.Word,
                     LanguageCode = "en-US",
                     AudioGender = "m",

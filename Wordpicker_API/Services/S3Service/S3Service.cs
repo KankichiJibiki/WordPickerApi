@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Net;
 using Wordpicker_API.Configs;
 using Wordpicker_API.Utils;
+using static Google.Rpc.Context.AttributeContext.Types;
 
 namespace Wordpicker_API.Services.S3Service
 {
@@ -89,9 +90,14 @@ namespace Wordpicker_API.Services.S3Service
             try
             {
                 var result = await _s3Client.GetObjectAsync(parameters);
+                using (var responseStream = result.ResponseStream)
+                using (var reader = new StreamReader(responseStream))
+                {
+                    string content = await reader.ReadToEndAsync();
 
-                _response.SetResponse(true, StatusCodes.Status200OK, "Success", JsonConvert.SerializeObject(result));
-                return _response;
+                    _response.SetResponse(true, StatusCodes.Status200OK, "Success", content);
+                    return _response;
+                }
             } catch (Exception ex)
             {
                 _response.SetResponse(true, StatusCodes.Status204NoContent, ex.Message, "");

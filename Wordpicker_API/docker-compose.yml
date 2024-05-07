@@ -1,0 +1,11 @@
+﻿version: '3.8'
+
+services:
+  wordpicker:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "5200:80"
+    container_name: wordpicker
+    command: [ "dotnet", "Wordpicker_API.dll" ]

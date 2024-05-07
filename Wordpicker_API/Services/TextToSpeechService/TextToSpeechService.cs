@@ -59,7 +59,7 @@ namespace Wordpicker_API.Services.TextToSpeechService
                 SynthesizeSpeechResponse synthesizeResponse = _textClient.SynthesizeSpeech(synthesizeRequest);
                 byte[] audioData = synthesizeResponse.AudioContent.ToByteArray();
 
-                var putObjectResponse = await _s3Service.PutObjectAsync($"{_config.GetTempAudioPrefix()}/{request.Text}", audioData, _config.GetAudioContentType());
+                var putObjectResponse = await _s3Service.PutObjectAsync($"{_config.GetTempAudioPrefix()}/{request.Title}", audioData, _config.GetAudioContentType());
                 if (!putObjectResponse.GetResponse().Success)
                 {
                     throw new FileLoadException("Failed to put audio file");
