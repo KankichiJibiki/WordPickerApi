@@ -70,8 +70,8 @@ namespace Wordpicker_API.Services.DeepLService
                     translateFrom,
                     translateTo
                 );
-                
-                if(translatedText == null)
+
+                if (translatedText == null)
                 {
                     throw new InvalidDataException("Failed to translate");
                 }

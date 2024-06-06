@@ -1,11 +1,8 @@
 ﻿using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
-using Newtonsoft.Json;
-using System.Net;
 using Wordpicker_API.Configs;
 using Wordpicker_API.Utils;
-using static Google.Rpc.Context.AttributeContext.Types;
 
 namespace Wordpicker_API.Services.S3Service
 {

@@ -4,6 +4,7 @@ namespace Wordpicker_API.Services.WordsApiService
 {
     public interface IWordsApiService
     {
-        Task<ApiResponse> GetWordAsync(string word);
+        Task<ApiResponse> GetWordFullInfoAsync(string word);
+        Task<ApiResponse> GetWordPronunciationCodeAsync(string word);
     }
 }

@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System.Text.Json.Serialization;
+using System.Collections;
 using Wordpicker_API.Configs;
 using Wordpicker_API.DTOs;
 using Wordpicker_API.Services.DeepLService;
 using Wordpicker_API.Services.HttpService;
-using Wordpicker_API.Services.S3Service;
-using Wordpicker_API.Services.TextToSpeechService;
 using Wordpicker_API.Utils;
 
 namespace Wordpicker_API.Services.WordsApiService
@@ -16,22 +14,18 @@ namespace Wordpicker_API.Services.WordsApiService
 
         private readonly IHttpService _httpService;
         private readonly IDeepLService _deepLService;
-        private readonly ITextToSpeechService _textToSpeechService;
-        private readonly IS3Service _s3Service;
         private readonly IAppConfigs _config;
         private readonly ApiResponse _response;
 
-        public WordsApiService(IHttpService httpService, IAppConfigs config, IDeepLService deepLService, ITextToSpeechService textToSpeechService, IS3Service s3Service) 
+        public WordsApiService(IHttpService httpService, IAppConfigs config, IDeepLService deepLService) 
         {
             _httpService = httpService;
             _deepLService = deepLService;
-            _textToSpeechService = textToSpeechService;
-            _s3Service = s3Service;
             _config = config;
             _response = new ApiResponse();
         }
 
-        public async Task<ApiResponse> GetWordAsync(string word)
+        public async Task<ApiResponse> GetWordFullInfoAsync(string word)
         {
             if (string.IsNullOrEmpty(word))
             {
@@ -48,39 +42,12 @@ namespace Wordpicker_API.Services.WordsApiService
             var url = _config.GetWordsApiEndpoint() + $"words/{word}";
             try
             {
-                var headers = new Dictionary<string, string>
-                {
-                    { "X-RapidAPI-Key", _config.GetWordsApiKey() },
-                    { "X-RapidAPI-Host", _config.GetWordsApiHost() },
-                };
-
-                var result = await _httpService.GetAsync(url, headers);
+                var result = await _httpService.GetAsync(url, GetHeaders());
                 if (result.GetResponse().StatusCode == StatusCodes.Status204NoContent || string.IsNullOrEmpty(result.GetResponse().Data))
                 {
                     return result;
                 }
-
                 var finalResponse = await GetJPDefinitions(result.GetResponse().Data);
-
-                var prefix = $"{_config.GetTempAudioPrefix()}/{finalResponse.Word}.wav";
-                var doesAudioExist = await _s3Service.GetObjectAsync(prefix);
-                if (doesAudioExist.GetResponse().StatusCode.Equals(StatusCodes.Status200OK))
-                {
-                    var responseUrl = await _s3Service.CreatePreSignedUrl(prefix);
-                    finalResponse.Pronunciation.AudioURL = responseUrl.GetResponse().Data;
-                    result.SetResponse(true, StatusCodes.Status200OK, "", JsonConvert.SerializeObject(finalResponse));
-                    return result;
-                }
-
-                var textToSpeechParams = new TextToSpeechRequestDto
-                {
-                    Title = finalResponse.Word,
-                    Text = finalResponse.Word,
-                    LanguageCode = "en-US",
-                    AudioGender = "m",
-                };
-                var audioResponse = await _textToSpeechService.ConvertTextToSpeech(textToSpeechParams);
-                finalResponse.Pronunciation.AudioURL = audioResponse.GetResponse().Data; 
 
                 result.SetResponse(true, StatusCodes.Status200OK, "", JsonConvert.SerializeObject(finalResponse));
                 return result;
@@ -90,8 +57,39 @@ namespace Wordpicker_API.Services.WordsApiService
                 return _response;
             }
         }
+        public async Task<ApiResponse> GetWordPronunciationCodeAsync(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+            {
+                _response.SetResponse(false, StatusCodes.Status400BadRequest, "Word is blank", "");
+                return _response;
+            }
 
-        private async Task<Root> GetJPDefinitions(string jsonData)
+            if (word.Length > MAX_WORD_LENGTH)
+            {
+                _response.SetResponse(false, StatusCodes.Status400BadRequest, "Word is too long", "");
+                return _response;
+            }
+            var url = _config.GetWordsApiEndpoint() + $"words/{word}/pronunciation";
+            try
+            {
+                var result = await _httpService.GetAsync(url, GetHeaders());
+                if (result.GetResponse().StatusCode == StatusCodes.Status204NoContent || string.IsNullOrEmpty(result.GetResponse().Data))
+                {
+                    return result;
+                }
+
+                result.SetResponse(true, StatusCodes.Status200OK, "", result.GetResponse().Data);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _response.SetResponse(true, StatusCodes.Status500InternalServerError, ex.Message, "");
+                return _response;
+            }
+        }
+
+            private async Task<Root> GetJPDefinitions(string jsonData)
         {
             Root root = JsonConvert.DeserializeObject<Root>(jsonData);
 
@@ -120,6 +118,15 @@ namespace Wordpicker_API.Services.WordsApiService
             {
                 throw new InvalidDataException(ex.Message);
             }
+        }
+
+        private Dictionary<string, string> GetHeaders()
+        {
+            return new Dictionary<string, string>
+                {
+                    { "X-RapidAPI-Key", _config.GetWordsApiKey() },
+                    { "X-RapidAPI-Host", _config.GetWordsApiHost() },
+                };
         }
     }
 }

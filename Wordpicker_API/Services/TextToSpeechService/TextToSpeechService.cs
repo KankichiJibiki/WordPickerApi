@@ -36,6 +36,13 @@ namespace Wordpicker_API.Services.TextToSpeechService
                 return _response;
             }
 
+            var prefix = $"{_config.GetTempAudioPrefix()}/{request.Title}";
+            var doesAudioExist = await _s3Service.GetObjectAsync(prefix);
+            if (doesAudioExist.GetResponse().StatusCode.Equals(StatusCodes.Status200OK))
+            {
+                return await _s3Service.CreatePreSignedUrl(prefix);
+            }
+
             try
             {
                 SynthesizeSpeechRequest synthesizeRequest = new SynthesizeSpeechRequest()
@@ -59,7 +66,7 @@ namespace Wordpicker_API.Services.TextToSpeechService
                 SynthesizeSpeechResponse synthesizeResponse = _textClient.SynthesizeSpeech(synthesizeRequest);
                 byte[] audioData = synthesizeResponse.AudioContent.ToByteArray();
 
-                var putObjectResponse = await _s3Service.PutObjectAsync($"{_config.GetTempAudioPrefix()}/{request.Title}", audioData, _config.GetAudioContentType());
+                var putObjectResponse = await _s3Service.PutObjectAsync(prefix, audioData, _config.GetAudioContentType());
                 if (!putObjectResponse.GetResponse().Success)
                 {
                     throw new FileLoadException("Failed to put audio file");
