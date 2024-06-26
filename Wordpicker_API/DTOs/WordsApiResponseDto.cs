@@ -35,10 +35,10 @@ namespace Wordpicker_API.DTOs
     public class Pronunciation
     {
         [JsonPropertyName("all")]
-        public string? All { get; set; }
+        public string All { get; set; } = string.Empty;
 
         [JsonPropertyName("audio")]
-        public string? AudioURL { get; set; }
+        public string AudioURL { get; set; } = string.Empty;
     }
 
     public class Root
@@ -53,7 +53,7 @@ namespace Wordpicker_API.DTOs
         public Syllables? Syllables { get; set; }
 
         [JsonPropertyName("pronunciation")]
-        public Pronunciation? Pronunciation { get; set; }
+        public Pronunciation? Pronunciation { get; set; } = new Pronunciation();
 
         [JsonPropertyName("frequency")]
         public double Frequency { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
+using System.Web;
 using Wordpicker_API.Configs;
 using Wordpicker_API.DTOs;
 using Wordpicker_API.Services.DeepLService;
@@ -39,13 +40,19 @@ namespace Wordpicker_API.Services.WordsApiService
                 return _response;
             }
 
-            var url = _config.GetWordsApiEndpoint() + $"words/{word}";
+            var encodedWord = System.Uri.EscapeDataString(word);
+            var url = _config.GetWordsApiEndpoint() + $"words/{encodedWord}";
             try
             {
                 var result = await _httpService.GetAsync(url, GetHeaders());
+
                 if (result.GetResponse().StatusCode == StatusCodes.Status204NoContent || string.IsNullOrEmpty(result.GetResponse().Data))
                 {
                     return result;
+                }
+                if (result.GetResponse().StatusCode != StatusCodes.Status200OK)
+                {
+                    throw new Exception($"Failed to Search the word {word}");
                 }
                 var finalResponse = await GetJPDefinitions(result.GetResponse().Data);
 
@@ -70,7 +77,9 @@ namespace Wordpicker_API.Services.WordsApiService
                 _response.SetResponse(false, StatusCodes.Status400BadRequest, "Word is too long", "");
                 return _response;
             }
-            var url = _config.GetWordsApiEndpoint() + $"words/{word}/pronunciation";
+
+            var encodedWord = System.Uri.EscapeDataString(word);
+            var url = _config.GetWordsApiEndpoint() + $"words/{encodedWord}/pronunciation";
             try
             {
                 var result = await _httpService.GetAsync(url, GetHeaders());

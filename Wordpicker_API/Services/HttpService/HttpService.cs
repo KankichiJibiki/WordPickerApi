@@ -33,7 +33,7 @@ namespace Wordpicker_API.Services.HttpService
                 return _response;
             } catch (Exception ex)
             {
-                _response.SetResponse(true, StatusCodes.Status200OK, ex.Message, "");
+                _response.SetResponse(true, StatusCodes.Status500InternalServerError, ex.Message, "");
 
                 return _response;
             }
