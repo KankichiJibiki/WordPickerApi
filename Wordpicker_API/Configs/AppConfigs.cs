@@ -56,5 +56,10 @@
         {
             return "audio/wav";
         }
+
+        public string GetRedisConnection()
+        {
+            return _configuration.GetConnectionString("Redis");
+        }
     }
 }

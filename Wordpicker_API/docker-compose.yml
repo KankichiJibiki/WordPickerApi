@@ -10,4 +10,28 @@ services:
     ports:
       - "5200:80"
     container_name: wordpicker
+    depends_on: 
+      - mysql
+      - redis
     command: [ "dotnet", "Wordpicker_API.dll" ]
+  
+  mysql: 
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Kanchi1997!
+      MYSQL_DATABASE: wordpicker_db
+      MYSQL_USER: kanchi
+      MYSQL_PASSWORD: Kanchi1997!
+    ports:
+      - "3310:3310"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  
+volumes: 
+  mysql_data:
+      

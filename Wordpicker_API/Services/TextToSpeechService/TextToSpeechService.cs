@@ -36,7 +36,7 @@ namespace Wordpicker_API.Services.TextToSpeechService
                 return _response;
             }
 
-            var prefix = $"{_config.GetTempAudioPrefix()}/{request.Title}";
+            var prefix = $"{_config.GetTempAudioPrefix()}/{System.Uri.EscapeDataString(request.Title)}";
             var doesAudioExist = await _s3Service.GetObjectAsync(prefix);
             if (doesAudioExist.GetResponse().StatusCode.Equals(StatusCodes.Status200OK))
             {

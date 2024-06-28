@@ -13,5 +13,6 @@
         string GetS3SecretKey();
         string GetTempAudioPrefix();
         string GetAudioContentType();
+        string GetRedisConnection();
     }
 }

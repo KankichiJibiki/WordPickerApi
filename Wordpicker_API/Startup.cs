@@ -1,10 +1,16 @@
-﻿using Microsoft.AspNetCore.HttpOverrides;
+﻿using Google.Api;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Wordpicker_API.Configs;
+using Wordpicker_API.Contexts;
 using Wordpicker_API.Services.DeepLService;
 using Wordpicker_API.Services.HttpService;
+using Wordpicker_API.Services.RedisService;
 using Wordpicker_API.Services.S3Service;
 using Wordpicker_API.Services.TextToSpeechService;
 using Wordpicker_API.Services.WordsApiService;
+using Wordpicker_API.ValueDefinitions;
 
 namespace Wordpicker_API
 {
@@ -30,6 +36,15 @@ namespace Wordpicker_API
             services.AddScoped<IDeepLService, DeepLService>();
             services.AddScoped<IS3Service, S3Service>();
             services.AddScoped<ITextToSpeechService, TextToSpeechService>();
+            services.AddScoped<IRedisService, RedisService>();
+
+            services.AddDbContext<WordpickerContext>(options =>
+            {
+                MySqlServerVersion mySqlServerVersion = new(new Version(Consts.MYSQL_VERSION));
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), mySqlServerVersion, opt => opt.CommandTimeout(120));
+                options.EnableSensitiveDataLogging();
+                options.EnableDetailedErrors();
+            });
         }
 
         // Configure HTTP pipeline
