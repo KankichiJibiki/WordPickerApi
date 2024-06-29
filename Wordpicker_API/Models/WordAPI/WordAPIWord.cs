@@ -13,8 +13,6 @@ namespace Wordpicker_API.Models.WordAPI
 
         public string? Pronunciation { get; set; }
 
-        public string? YourAudio { get; set; }
-
         public string? ExampleAudio { get; set; }
 
         public virtual ICollection<WordAPIType> Types { get; set; }

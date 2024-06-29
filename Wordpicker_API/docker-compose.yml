@@ -23,7 +23,7 @@ services:
       MYSQL_USER: kanchi
       MYSQL_PASSWORD: Kanchi1997!
     ports:
-      - "3310:3310"
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 

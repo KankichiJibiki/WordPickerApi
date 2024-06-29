@@ -48,7 +48,7 @@ namespace Wordpicker_API
         }
 
         // Configure HTTP pipeline
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WordpickerContext context)
         {
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
@@ -63,6 +63,7 @@ namespace Wordpicker_API
             {
                 app.UseExceptionHandler("/Error");
             }
+            context.Database.Migrate();
 
             // Cors settings
             app.UseCors(builder =>
@@ -82,7 +83,5 @@ namespace Wordpicker_API
                 endpoints.MapHealthChecks("/health");
             });
         }
-
-
     }
 }

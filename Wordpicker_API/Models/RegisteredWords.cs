@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Google.Type;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace Wordpicker_API.Models
@@ -23,5 +24,10 @@ namespace Wordpicker_API.Models
         [MaxLength(100)]
         public string DefinitionJP { get; set; } = string.Empty;
 
+        [Required]
+        public string Username { get; set; } = string.Empty;
+        public System.DateTime CreationDate { get; set; } = System.DateTime.Now;
+        public System.DateTime UpdateDate { get; set; } = System.DateTime.Now;
+        public System.DateTime? DeletionDate { get; set; }
     }
 }

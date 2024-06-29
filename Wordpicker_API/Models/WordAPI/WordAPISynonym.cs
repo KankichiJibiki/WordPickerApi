@@ -9,7 +9,7 @@ namespace Wordpicker_API.Models.WordAPI
 
         [Required]
         [MaxLength(255)]
-        public string Synonym { get; set; } = string.Empty;
+        public string? Synonym { get; set; }
 
         public int WordId { get; set; }
 

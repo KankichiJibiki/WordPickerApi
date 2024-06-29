@@ -8,7 +8,7 @@ namespace Wordpicker_API.Models.WordAPI
         public int ExampleId { get; set; }
 
         [Required]
-        public string Example { get; set; } = string.Empty;
+        public string? Example { get; set; }
 
         public int WordId { get; set; }
 

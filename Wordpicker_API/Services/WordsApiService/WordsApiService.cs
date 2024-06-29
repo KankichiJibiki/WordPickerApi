@@ -98,7 +98,7 @@ namespace Wordpicker_API.Services.WordsApiService
             }
         }
 
-            private async Task<Root> GetJPDefinitions(string jsonData)
+        private async Task<Root> GetJPDefinitions(string jsonData)
         {
             Root root = JsonConvert.DeserializeObject<Root>(jsonData);
 
